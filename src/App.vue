@@ -5,17 +5,14 @@
 </template>
 
 <script>
-import TodoList from './components/TodoList'
+import TodoList from "./components/TodoList";
 export default {
   name: "App",
   components: {
-    TodoList,},
-  mounted(){
-
-  }
+    TodoList,
+  },
+  mounted() {},
 };
 </script>
 
-<style >
-
-</style>
+<style></style>
