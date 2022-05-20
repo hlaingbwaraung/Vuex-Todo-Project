@@ -8,7 +8,12 @@
       </div>
       <div class="row">
         <div class="col-md-4 my-4" v-for="todo in myTodos" :key="todo.id">
-          <b-card bg-variant="primary" text-variant="white" class="text-center">
+          <b-card
+            @dblclick="toggleComplete(todo)"
+            :bg-variant="dynamicBackground(todo)"
+            text-variant="white"
+            class="text-center"
+          >
             <b-card-text class="d-flex justify-content-between">
               <span>{{ todo.title }}</span>
               <span
@@ -36,7 +41,16 @@ export default {
     AddTodo,
   },
   computed: mapGetters(["myTodos"]),
-  methods: mapActions(["getTodos", "deleteTodo"]),
+  methods: {
+    toggleComplete(todo) {
+      todo.completed = !todo.completed;
+      this.updateTodo(todo);
+    },
+    dynamicBackground(todo) {
+      return todo.completed ? "success" : "primary";
+    },
+    ...mapActions(["getTodos", "deleteTodo", "updateTodo"]),
+  },
   mounted() {
     this.getTodos();
   },
